@@ -47,7 +47,12 @@ export default function Navbar() {
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-soft transition-transform group-hover:scale-105">
             <GraduationCap className="h-5 w-5" strokeWidth={2.25} />
           </span>
-          <span className="text-lg font-bold tracking-tight text-slate-900">
+          <span
+            className={cn(
+              "text-lg font-bold tracking-tight transition-colors",
+              scrolled ? "text-slate-900" : "text-white"
+            )}
+          >
             SchoolBridge
           </span>
         </Link>
@@ -57,7 +62,12 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+              className={cn(
+                "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                scrolled
+                  ? "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                  : "text-white/85 hover:bg-white/10 hover:text-white"
+              )}
             >
               {link.label}
             </Link>
@@ -78,7 +88,10 @@ export default function Navbar() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100 lg:hidden"
+          className={cn(
+            "inline-flex h-10 w-10 items-center justify-center rounded-lg transition-colors lg:hidden",
+            scrolled || open ? "text-slate-700 hover:bg-slate-100" : "text-white hover:bg-white/10"
+          )}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
